@@ -6,7 +6,6 @@ class CreateTeacherProfiles < ActiveRecord::Migration[7.0]
       t.bigint :phone_no
       t.string :gender
       t.string :education
-      t.string :profile_photo
       t.date :birth_date
       t.references :teacher, null: false, foreign_key: true
 
