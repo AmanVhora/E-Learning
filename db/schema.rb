@@ -42,25 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_050553) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "teacher_profiles", force: :cascade do |t|
-    t.string "first_name"
-    t.string "lastname"
-    t.bigint "phone_no"
-    t.string "gender"
-    t.string "education"
-    t.date "birth_date"
-    t.bigint "teacher_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["teacher_id"], name: "index_teacher_profiles_on_teacher_id"
-  end
-
   create_table "teachers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "phone_no"
+    t.integer "gender"
+    t.string "education"
+    t.date "birth_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_teachers_on_email", unique: true
@@ -69,5 +62,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_050553) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "teacher_profiles", "teachers"
 end
