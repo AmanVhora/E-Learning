@@ -77,3 +77,9 @@ gem "figaro", "~> 1.2"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "devise", "~> 4.9"
+
+gem "activeadmin", "~> 3.0"
+
+gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
+
+gem "active_skin", "~> 0.0.13"

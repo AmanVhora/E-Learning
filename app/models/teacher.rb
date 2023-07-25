@@ -5,11 +5,12 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_photo
-  validates :first_name, :last_name, :education, :birth_date, :profile_photo, :gender, presence: true
+  validates :first_name, :last_name, :education, :birth_date, :gender, presence: true
   validates :phone_no, presence: true, numericality: true, length: { is: 10 }
   validate :password_requirements
 
   enum :gender, %i[male female]
+
   private
   def password_requirements
     rules = {
@@ -22,5 +23,14 @@ class Teacher < ApplicationRecord
     rules.each do |message, regex|
       errors.add(:password, message) unless password&.match(regex)
     end
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[profile_photo_attachment profile_photo_blob]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    # %w[birth_date created_at education email encrypted_password first_name gender id last_name phone_no profile_photo remember_created_at reset_password_sent_at reset_password_token updated_at]
+    %w[created_at education email first_name last_name]
   end
 end
