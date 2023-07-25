@@ -1,0 +1,71 @@
+<div class="w-1/2 mx-auto">
+  <h2 class="mb-5 text-3xl">Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "teachers/shared/error_messages", resource: resource %>
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+      <div>
+        <%= f.label :first_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.text_field :first_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Aman" %>
+      </div>
+
+      <div>
+        <%= f.label :last_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.text_field :last_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Vhora" %>
+      </div>
+
+      <div>
+        <%= f.label :phone_no, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.number_field :phone_no, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "1234567890" %>
+      </div>
+
+      <div>
+        <%= f.label :education, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.text_field :education, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "B.E. in Computer Engineering" %>
+      </div>  
+
+      <div>
+        <%= f.label :birth_date, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.date_field :birth_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      </div>
+
+      <div>
+        <%= f.label :gender, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <div class= "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">          
+          <%= f.radio_button :gender, "male" %>
+          <%= f.label :male, class: "mr-5" %>
+
+          <%= f.radio_button :gender, "female" %>
+          <%= f.label :female %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "aman@vhora.com" %>
+    </div> 
+
+    <div class="mb-6 block mb-2 text-sm font-medium text-gray-900 dark:text-white"">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "••••••" %>
+    </div> 
+
+    <div class="mb-6">
+      <%= f.label :password_confirmation, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "••••••" %>
+    </div> 
+
+    <div class="mb-6">
+      <%= f.label :profile_photo, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.file_field :profile_photo, autocomplete: "new-password", class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    </div> 
+    
+    <%= f.submit "Sign up", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+  <% end %>
+
+  <%= render "teachers/shared/links" %>
+</div>
