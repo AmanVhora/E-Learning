@@ -71,10 +71,9 @@ ActiveAdmin.register Teacher do
 
   controller do
     def update
-      @teacher = Teacher.find(params[:id])
-      @teacher.admin_teacher = true
-      if @teacher.update!(teacher_params)
-        redirect_to admin_teacher_path(@teacher)
+      teacher = Teacher.find(params[:id])
+      if teacher.update(teacher_params)
+        redirect_to admin_teacher_path(teacher)
       else
         render :edit, status: :unprocessable_entity
       end
