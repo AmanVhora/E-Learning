@@ -5,13 +5,16 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_photo
-  validates :first_name, :last_name, :education, :birth_date, :profile_photo, :gender, presence: true
+  validates :first_name, :last_name, :education, :birth_date, :gender, :profile_photo, presence: true
   validates :phone_no, presence: true, numericality: true, length: { is: 10 }
   validate :password_requirements
 
   enum :gender, %i[male female]
+
   private
   def password_requirements
+    return if self.password.nil?
+    
     rules = {
       'must contain at least one lowercase letter' => /[a-z]+/,
       'must contain at least one uppercase letter' => /[A-Z]+/,
@@ -22,5 +25,9 @@ class Teacher < ApplicationRecord
     rules.each do |message, regex|
       errors.add(:password, message) unless password&.match(regex)
     end
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[created_at education email first_name last_name birth_date gender]
   end
 end
