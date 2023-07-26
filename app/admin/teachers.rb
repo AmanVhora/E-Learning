@@ -1,20 +1,7 @@
 ActiveAdmin.register Teacher do
-  actions :index, :show, :edit, :update, :destroy
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :email, :first_name, :last_name, :phone_no, :gender, :education, :birth_date, :profile_photo
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :first_name, :last_name, :phone_no, :gender, :education, :birth_date]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  actions :all, except: %i[new create]
+  permit_params :email, :first_name, :last_name, :phone_no, :gender, :education, :birth_date, :profile_photo
+
   index do
     selectable_column
     id_column
@@ -66,22 +53,6 @@ ActiveAdmin.register Teacher do
       f.input :birth_date, as: :datepicker
       f.input :profile_photo, as: :file
       f.actions
-    end
-  end
-
-  controller do
-    def update
-      teacher = Teacher.find(params[:id])
-      if teacher.update(teacher_params)
-        redirect_to admin_teacher_path(teacher)
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
-
-    private
-    def teacher_params
-      params.require(:teacher).permit(:email, :first_name, :last_name, :phone_no, :gender, :education, :birth_date, :profile_photo)
     end
   end
 end
