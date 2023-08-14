@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher: one
+  title: MyString
+  course_category: one
+  caption: MyString
+  description: MyText
+  price: 1
+  language: MyString
+
+two:
+  teacher: two
+  title: MyString
+  course_category: two
+  caption: MyString
+  description: MyText
+  price: 1
+  language: MyString

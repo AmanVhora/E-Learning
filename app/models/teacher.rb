@@ -3,7 +3,8 @@ class Teacher < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  
+  has_many :courses
   has_one_attached :profile_photo
   validates :first_name, :last_name, :education, :birth_date, :gender, :profile_photo, presence: true
   validates :phone_no, presence: true, numericality: true, length: { is: 10 }
