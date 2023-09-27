@@ -7,7 +7,7 @@ class CreateCourses < ActiveRecord::Migration[7.0]
       t.string :caption
       t.text :description
       t.integer :price
-      t.string :language
+      t.integer :language
 
       t.timestamps
     end

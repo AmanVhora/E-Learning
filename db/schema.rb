@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_061507) do
     t.string "caption"
     t.text "description"
     t.integer "price"
-    t.string "language"
+    t.integer "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_category_id"], name: "index_courses_on_course_category_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_061507) do
 
   create_table "lectures", force: :cascade do |t|
     t.bigint "course_id", null: false
-    t.time "duration"
+    t.string "video_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_lectures_on_course_id"

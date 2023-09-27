@@ -5,18 +5,17 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
-    @course = Course.new
+    @course = current_teacher.courses.new
+    @course.lectures.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    @course = Course.new(course_params)
+    @course = current_teacher.courses.new(course_params)
 
     respond_to do |format|
       if @course.save
@@ -30,6 +29,8 @@ class CoursesController < ApplicationController
   end
 
   def update
+binding.pry
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
@@ -56,6 +57,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.fetch(:course, {})
+    params.require(:course).permit(:title, :course_category_id, :caption, :description, :price, :language, lectures_attributes: [:id, :video_title, :lecture_video, :_destroy])
   end
 end

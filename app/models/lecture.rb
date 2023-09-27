@@ -1,4 +1,5 @@
 class Lecture < ApplicationRecord
   belongs_to :course
-  has_many_attached :lecture_videos
+  has_one_attached :lecture_video
+  validates :video_title, presence: true, length: { maximum: 50 }
 end

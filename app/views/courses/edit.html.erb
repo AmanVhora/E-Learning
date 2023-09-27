@@ -1,8 +1,7 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing course</h1>
-
-  <%= render "form", course: @course %>
+<div class="mx-auto md:w-2/3 w-1/2">
+  <h1 class="font-bold text-4xl mb-5">Editing course</h1>
+  <%= render "form", course: @course, submit_text: 'Update' %>
 
   <%= link_to "Show this course", @course, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to courses", courses_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to courses", courses_path, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
 </div>
