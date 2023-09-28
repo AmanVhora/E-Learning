@@ -1,15 +1,44 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="container w-50 border">
+  <div class="p-3">
+    <div>
+      <strong class="fs-2 mb-2"><%= @course.title %></strong>
+      <p class="fs-4"><%= @course.caption %></p>
+      <p class="mb-1">Created by: <%= @course.teacher.first_name %> <%= @course.teacher.last_name %></p>
+      
+      <div class="d-flex">
+        <p>Last updated: <%= @course.updated_at.strftime("%d/%m/%y") %></p>
+        <p class="ms-5">Language: <%= @course.language.capitalize %></p>
+        <p class="ms-5">Price: <%= @course.price %>/-</p>
+      </div>
 
-    <%= render @course %>
+      <div class="mt-3">
+        <strong class="fs-3">What you'll Learn:</strong>
+        <pre><%= @course.description %></pre>
+      </div>
 
-    <%= link_to 'Edit this course', edit_course_path(@course), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this course', course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <div class="mt-3">
+        <strong class="fs-3">This course includes:</strong>
+        <p>Duration: <%= @course.total_duration %></p>
+        <p>Videos: <%= @course.lectures.size %></p>
+      </div>
+
+      <div class="mt-3">
+        <strong class="fs-3">Course Contents:</strong>
+        <% @course.lectures.each do |lecture| %>
+          <% if lecture.lecture_video.attached? %>
+            <div class="mt-2">
+              <p class="fs-4"><%= lecture.video_title %></p>
+              <%= video_tag url_for(lecture.lecture_video), size: "500x500", controls: true, class: "mb-4" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <%= link_to 'Back to courses', courses_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+    <div class="mt-3">
+      <%= link_to 'Edit this course', edit_course_path(@course), class: "btn btn-warning rounded-1 me-2" %>
+      <%= link_to 'Destroy this course', course_path(@course), method: :delete, class: "btn btn-danger rounded-1 me-2" %>
+      <%= link_to 'Back to courses', courses_path, class: "btn btn-primary rounded-1" %>
+    </div>
   </div>
 </div>

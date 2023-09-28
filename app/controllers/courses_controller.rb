@@ -29,8 +29,6 @@ class CoursesController < ApplicationController
   end
 
   def update
-binding.pry
-
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
